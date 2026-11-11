@@ -1,0 +1,108 @@
+diff --git a/src/main/java/garage/Garage.java b/src/main/java/garage/Garage.java
+--- a/src/main/java/garage/Garage.java
++++ b/src/main/java/garage/Garage.java
+@@ -10,6 +10,7 @@
+     private final String name;
+     private final List<Spot> spots = new ArrayList<>();
+     private final Map<String, Vehicle> activeSessions = new HashMap<>();
++    private final Map<String, Spot> assignedSpots = new HashMap<>();
+ 
+     public Garage(String name) {
+         this.name = name;
+@@ -23,13 +24,11 @@
+      * Find a spot that can accommodate the vehicle.
+      */
+     public Spot findSpot(Vehicle vehicle) {
+-        double requirement = vehicle.getSpotRequirement();
+         for (Spot spot : spots) {
+             if (spot.isOccupied()) {
+                 continue;
+             }
+-            if (spot.getCapacity() >= requirement) {
+-                // BUG: uses capacity comparison but ignores fitsInSpot()
++            if (vehicle.fitsInSpot(spot)) {
+                 return spot;
+             }
+         }
+@@ -44,11 +43,11 @@
+             return false;
+         }
+ 
+-        // BUG: this call assumes fitsInSpot handles null safely
+         for (Spot spot : spots) {
+             if (!spot.isOccupied() && vehicle.fitsInSpot(spot)) {
+                 spot.setOccupied(true);
+                 activeSessions.put(vehicle.getLicensePlate(), vehicle);
++                assignedSpots.put(vehicle.getLicensePlate(), spot);
+                 return true;
+             }
+         }
+@@ -60,19 +59,16 @@
+      * Remove vehicle and return fee owed, or null if not present.
+      */
+     public Double checkOut(String licensePlate, double rate) {
+-        Vehicle vehicle = activeSessions.remove(licensePlate);
++        Vehicle vehicle = activeSessions.get(licensePlate);
+         if (vehicle == null) {
+             return null;
+         }
+ 
+         double fee = vehicle.calculateFee(rate);
+-
+-        for (Spot spot : spots) {
+-            if (spot.isOccupied()) {
+-                // BUG: naively frees the first occupied spot, not the vehicle's actual spot
+-                spot.setOccupied(false);
+-                break;
+-            }
++        activeSessions.remove(licensePlate);
++        Spot spot = assignedSpots.remove(licensePlate);
++        if (spot != null) {
++            spot.setOccupied(false);
+         }
+ 
+         return fee;
+@@ -85,4 +81,4 @@
+     public Map<String, Vehicle> getActiveSessions() {
+         return activeSessions;
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/main/java/garage/Motorcycle.java b/src/main/java/garage/Motorcycle.java
+--- a/src/main/java/garage/Motorcycle.java
++++ b/src/main/java/garage/Motorcycle.java
+@@ -15,7 +15,10 @@
+ 
+     @Override
+     public boolean fitsInSpot(Spot spot) {
+-        // BUG: assumes spot is never null
++        if (spot == null) {
++            return false;
++        }
++
+         return spot.getWidth() >= 1.0 && spot.getCapacity() >= 0.5;
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/main/java/garage/Truck.java b/src/main/java/garage/Truck.java
+--- a/src/main/java/garage/Truck.java
++++ b/src/main/java/garage/Truck.java
+@@ -7,8 +7,7 @@
+     private final double height;
+ 
+     public Truck(String licensePlate, double height) {
+-        // BUG: never calls super(...), so enteredAt is never set
+-        this.licensePlate = licensePlate;
++        super(licensePlate, LocalDateTime.now());
+         this.height = height;
+     }
+ 
+@@ -28,4 +27,4 @@
+         }
+         return spot.getCapacity() >= 2.0 && spot.getClearance() >= height;
+     }
+-}
+\ No newline at end of file
++}

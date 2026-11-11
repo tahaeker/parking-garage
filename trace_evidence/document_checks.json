@@ -1,0 +1,12 @@
+{
+  "checked_documents": 7,
+  "reflection_words": 211,
+  "debugger_screenshots": 2,
+  "errors": [],
+  "supplied_junit": {
+    "tests": 7,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0
+  }
+}

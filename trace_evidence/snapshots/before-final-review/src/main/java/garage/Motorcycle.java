@@ -16,6 +16,10 @@ public class Motorcycle extends Vehicle {
     @Override
     public boolean fitsInSpot(Spot spot) {
         // BUG: assumes spot is never null
+        if(spot == null) {
+            return false;
+        }
+
         return spot.getWidth() >= 1.0 && spot.getCapacity() >= 0.5;
     }
 }

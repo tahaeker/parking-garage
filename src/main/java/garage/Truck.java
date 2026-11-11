@@ -7,8 +7,7 @@ public class Truck extends Vehicle {
     private final double height;
 
     public Truck(String licensePlate, double height) {
-        // BUG: never calls super(...), so enteredAt is never set
-        this.licensePlate = licensePlate;
+        super(licensePlate, LocalDateTime.now());
         this.height = height;
     }
 

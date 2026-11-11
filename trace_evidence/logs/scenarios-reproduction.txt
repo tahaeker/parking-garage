@@ -1,0 +1,14 @@
+Captured: 2026-11-11T14:03:00.440644+03:00
+Working directory: C:\Users\Tahae\OOP-home-quiz\parking-garage
+Command: java -cp C:\Users\Tahae\OOP-home-quiz\parking-garage\target\evidence\scenarios-reproduction garage.GarageScenarioChecks
+Exit code: 1
+
+FAIL: truck height is respected by findSpot -- A 2.5m truck must not be assigned a 2.0m spot
+FAIL: motorcycle width is respected by findSpot -- A motorcycle must not be assigned a spot narrower than 1.0m
+FAIL: checkout frees the departing vehicle's spot -- The car's A1 spot was incorrectly freed
+FAIL: failed fee calculation preserves the session -- Session was lost on failure
+PASS: truck entry time is initialized
+FAIL: motorcycle rejects a null spot -- Cannot invoke "garage.Spot.getWidth()" because "spot" is null
+PASS: duplicate check-in is rejected
+PASS: unknown checkout returns null
+SCENARIOS: 3 passed, 5 failed

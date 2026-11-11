@@ -1,0 +1,66 @@
+Captured: 2026-11-11T13:48:32.959623+03:00
+Source state: current
+Scenario: truck
+Command: jdb -classpath C:\Users\Tahae\OOP-home-quiz\parking-garage\target\evidence\current-classes;C:\Users\Tahae\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\Tahae\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\Tahae\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Tahae\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar -sourcepath C:\Users\Tahae\OOP-home-quiz\parking-garage\src\main\java;C:\Users\Tahae\OOP-home-quiz\parking-garage\src\test\java;C:\Users\Tahae\OOP-home-quiz\parking-garage\tools garage.DebugRunner truck
+
+Initializing jdb ...
+> stop at garage.Vehicle:35
+Deferring breakpoint garage.Vehicle:35.
+It will be set after the class is loaded.
+> run
+run garage.DebugRunner truck
+Set uncaught java.lang.Throwable
+Set deferred uncaught java.lang.Throwable
+> 
+VM Started: Set deferred breakpoint garage.Vehicle:35
+
+Breakpoint hit: "thread=main", garage.Vehicle.calculateFee(), line=35 bci=0
+35            if (enteredAt == null) {
+
+main[1] where
+  [1] garage.Vehicle.calculateFee (Vehicle.java:35)
+  [2] garage.Garage.checkOut (Garage.java:67)
+  [3] garage.GarageTest.lambda$truckCheckoutFailsDueToMissingEnteredAt$0 (GarageTest.java:51)
+  [4] garage.GarageTest$$Lambda$1/0x0000026001001ac8.execute (null)
+  [5] org.junit.jupiter.api.AssertThrows.assertThrows (AssertThrows.java:53)
+  [6] org.junit.jupiter.api.AssertThrows.assertThrows (AssertThrows.java:39)
+  [7] org.junit.jupiter.api.Assertions.assertThrows (Assertions.java:3.131)
+  [8] garage.GarageTest.truckCheckoutFailsDueToMissingEnteredAt (GarageTest.java:50)
+  [9] garage.DebugRunner.main (DebugRunner.java:14)
+main[1] locals
+Method arguments:
+ratePerHour = 5.0
+Local variables:
+main[1] print this.licensePlate
+ this.licensePlate = "TRK-002"
+main[1] print this.enteredAt
+ this.enteredAt = "2026-11-11T13:48:33.307268100"
+main[1] print this.enteredAt.toString()
+ this.enteredAt.toString() = "2026-11-11T13:48:33.307268100"
+main[1] print this.enteredAt != null
+ this.enteredAt != null = true
+main[1] next
+> 
+Step completed: "thread=main", garage.Vehicle.calculateFee(), line=38 bci=17
+38            double hours = Duration.between(enteredAt, LocalDateTime.now()).toMinutes() / 60.0;
+
+main[1] cont
+> 
+Exception occurred: org.opentest4j.AssertionFailedError (uncaught)"thread=main", org.junit.jupiter.api.AssertThrows.assertThrows(), line=73 bci=84
+
+main[1] where
+  [1] org.junit.jupiter.api.AssertThrows.assertThrows (AssertThrows.java:73)
+  [2] org.junit.jupiter.api.AssertThrows.assertThrows (AssertThrows.java:39)
+  [3] org.junit.jupiter.api.Assertions.assertThrows (Assertions.java:3.131)
+  [4] garage.GarageTest.truckCheckoutFailsDueToMissingEnteredAt (GarageTest.java:50)
+  [5] garage.DebugRunner.main (DebugRunner.java:14)
+main[1] cont
+> Exception in thread "main" org.opentest4j.AssertionFailedError: Fee calculation should fail because enteredAt was never set ==> Expected java.lang.IllegalStateException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:39)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3131)
+	at garage.GarageTest.truckCheckoutFailsDueToMissingEnteredAt(GarageTest.java:50)
+	at garage.DebugRunner.main(DebugRunner.java:14)
+
+The application exited

@@ -1,0 +1,12 @@
+[
+  {
+    "file": "motorcycle-current.png",
+    "description": "Paused at src/main/java/garage/Motorcycle.java:18. The variables show spot = null, licensePlate = MOTO-002, and an initialized enteredAt. This capture uses the corrected source.",
+    "sha256": "4b6f50fde7025cb2d59f3b831131accac4b8a63d1ea33d6ee3bbb3ea982a91c4"
+  },
+  {
+    "file": "motorcycle-reproduction.png",
+    "description": "The source shown is Motorcycle.java:19 under trace_evidence/snapshots/reproduce-motorcycle-failure. The old code calls getWidth while spot is null. This session is separate from the corrected-source session. The reproduction source was opened manually while paused at the method breakpoint with the fitsInSpot:19 frame selected; the Variables panel contains values from the running old version.",
+    "sha256": "d08a43d192b16aad69003c580d12b63d98d7c94f7bc87950b424e9dc7a466bb9"
+  }
+]

@@ -1,0 +1,58 @@
+Captured: 2026-11-11T13:48:27.701491+03:00
+Source state: reproduction
+Scenario: motorcycle
+Command: jdb -classpath C:\Users\Tahae\OOP-home-quiz\parking-garage\target\evidence\reproduction-classes;C:\Users\Tahae\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\Tahae\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\Tahae\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Tahae\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar -sourcepath C:\Users\Tahae\OOP-home-quiz\parking-garage\trace_evidence\snapshots\reproduce-motorcycle-failure\src\main\java;C:\Users\Tahae\OOP-home-quiz\parking-garage\trace_evidence\snapshots\reproduce-motorcycle-failure\src\test\java;C:\Users\Tahae\OOP-home-quiz\parking-garage\tools garage.DebugRunner motorcycle
+
+Initializing jdb ...
+> stop in garage.Motorcycle.fitsInSpot
+Deferring breakpoint garage.Motorcycle.fitsInSpot.
+It will be set after the class is loaded.
+> run
+run garage.DebugRunner motorcycle
+Set uncaught java.lang.Throwable
+Set deferred uncaught java.lang.Throwable
+> 
+VM Started: Set deferred breakpoint garage.Motorcycle.fitsInSpot
+
+Breakpoint hit: "thread=main", garage.Motorcycle.fitsInSpot(), line=19 bci=0
+19            return spot.getWidth() >= 1.0 && spot.getCapacity() >= 0.5;
+
+main[1] where
+  [1] garage.Motorcycle.fitsInSpot (Motorcycle.java:19)
+  [2] garage.GarageTest.motorcycleHandlesNullSpotGracefully (GarageTest.java:65)
+  [3] garage.DebugRunner.main (DebugRunner.java:12)
+main[1] locals
+Method arguments:
+spot = null
+Local variables:
+main[1] print spot
+ spot = null
+main[1] dump this
+ this = {
+    garage.Vehicle.licensePlate: "MOTO-002"
+    garage.Vehicle.enteredAt: instance of java.time.LocalDateTime(id=721)
+}
+main[1] print this.licensePlate
+ this.licensePlate = "MOTO-002"
+main[1] print this.enteredAt.toString()
+ this.enteredAt.toString() = "2026-11-11T13:48:28.114111200"
+main[1] next
+> 
+Exception occurred: java.lang.NullPointerException (uncaught)"thread=main", garage.Motorcycle.fitsInSpot(), line=19 bci=1
+19            return spot.getWidth() >= 1.0 && spot.getCapacity() >= 0.5;
+
+main[1] where
+  [1] garage.Motorcycle.fitsInSpot (Motorcycle.java:19)
+  [2] garage.GarageTest.motorcycleHandlesNullSpotGracefully (GarageTest.java:65)
+  [3] garage.DebugRunner.main (DebugRunner.java:12)
+main[1] locals
+Method arguments:
+spot = null
+Local variables:
+main[1] cont
+> Exception in thread "main" java.lang.NullPointerException: Cannot invoke "garage.Spot.getWidth()" because "spot" is null
+	at garage.Motorcycle.fitsInSpot(Motorcycle.java:19)
+	at garage.GarageTest.motorcycleHandlesNullSpotGracefully(GarageTest.java:65)
+	at garage.DebugRunner.main(DebugRunner.java:12)
+
+The application exited

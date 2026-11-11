@@ -28,7 +28,7 @@ public class Garage {
             if (spot.isOccupied()) {
                 continue;
             }
-            if (spot.getCapacity() >= requirement) {
+            if (vehicle.fitsInSpot(spot)) {
                 // BUG: uses capacity comparison but ignores fitsInSpot()
                 return spot;
             }

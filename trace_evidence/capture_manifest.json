@@ -1,0 +1,7 @@
+{
+  "captured_at": "2026-11-11T13:44:48.593524+03:00",
+  "repository_commit": "a59f0c179ce056cad4df8ccb83e0952b3fe4d907",
+  "supplied_test_sha256": "74672a30a3a3ae6e7f89b3c0f6b2e38634c6b82b8180ceaeb15e7e9c8921b5c8",
+  "original_snapshot_note": "Git HEAD sources relocated into the documented Maven layout; vehicle.java renamed Vehicle.java. Contents unchanged.",
+  "before_final_review_note": "Exact current source tree before the final review changes."
+}

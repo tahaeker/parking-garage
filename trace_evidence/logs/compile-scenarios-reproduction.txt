@@ -1,0 +1,5 @@
+Captured: 2026-11-11T14:03:00.288660+03:00
+Working directory: C:\Users\Tahae\OOP-home-quiz\parking-garage
+Command: javac -g -encoding UTF-8 -d C:\Users\Tahae\OOP-home-quiz\parking-garage\target\evidence\scenarios-reproduction C:\Users\Tahae\OOP-home-quiz\parking-garage\trace_evidence\snapshots\reproduce-motorcycle-failure\src\main\java\garage\Car.java C:\Users\Tahae\OOP-home-quiz\parking-garage\trace_evidence\snapshots\reproduce-motorcycle-failure\src\main\java\garage\Garage.java C:\Users\Tahae\OOP-home-quiz\parking-garage\trace_evidence\snapshots\reproduce-motorcycle-failure\src\main\java\garage\Motorcycle.java C:\Users\Tahae\OOP-home-quiz\parking-garage\trace_evidence\snapshots\reproduce-motorcycle-failure\src\main\java\garage\Spot.java C:\Users\Tahae\OOP-home-quiz\parking-garage\trace_evidence\snapshots\reproduce-motorcycle-failure\src\main\java\garage\Truck.java C:\Users\Tahae\OOP-home-quiz\parking-garage\trace_evidence\snapshots\reproduce-motorcycle-failure\src\main\java\garage\Vehicle.java C:\Users\Tahae\OOP-home-quiz\parking-garage\tools\garage\GarageScenarioChecks.java
+Exit code: 0
+

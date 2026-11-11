@@ -1,0 +1,12 @@
+{
+  "patch_paths": [
+    "src/main/java/garage/Garage.java",
+    "src/main/java/garage/Motorcycle.java",
+    "src/main/java/garage/Truck.java"
+  ],
+  "patch_apply_check": "passed",
+  "patched_sources_match_final_sources": true,
+  "supplied_test_unchanged_since_capture": true,
+  "supplied_test_matches_git_HEAD_ignoring_line_endings": true,
+  "supplied_test_sha256": "74672a30a3a3ae6e7f89b3c0f6b2e38634c6b82b8180ceaeb15e7e9c8921b5c8"
+}

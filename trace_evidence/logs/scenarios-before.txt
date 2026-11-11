@@ -1,0 +1,14 @@
+Captured: 2026-11-11T13:46:15.591025+03:00
+Working directory: C:\Users\Tahae\OOP-home-quiz\parking-garage
+Command: java -cp C:\Users\Tahae\OOP-home-quiz\parking-garage\target\evidence\scenarios-before garage.GarageScenarioChecks
+Exit code: 1
+
+PASS: truck height is respected by findSpot
+PASS: motorcycle width is respected by findSpot
+FAIL: checkout frees the departing vehicle's spot -- The car's A1 spot was incorrectly freed
+FAIL: failed fee calculation preserves the session -- Session was lost on failure
+PASS: truck entry time is initialized
+PASS: motorcycle rejects a null spot
+PASS: duplicate check-in is rejected
+PASS: unknown checkout returns null
+SCENARIOS: 6 passed, 2 failed
